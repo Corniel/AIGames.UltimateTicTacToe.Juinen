@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AIGames.UltimateTicTacToe.Juinen
 {
 	[System.Runtime.InteropServices.Guid("1D877B8C-5896-4864-B624-43CC2821C420")]
 	public static class TinyBoard
 	{
+		public const int Empty = 0;
+
 		public static readonly int[] Finals1 = new int[]
 		{
 			0x00015,
@@ -40,7 +39,7 @@ namespace AIGames.UltimateTicTacToe.Juinen
 		/// </remarks>
 		public static readonly int[,] MovesO = new int[1 << 18, 9];
 		public static readonly int[,] MovesX = new int[1 << 18, 9];
-
+		public static readonly int[] MoveCount = new int[1 << 18];
 		/// <summary>Gets the outcome of a tiny board.</summary>
 		/// <remarks>
 		/// var outcome = Moves[currentboard]; // 0, no outcome yet, 1 or 2.
@@ -95,6 +94,7 @@ namespace AIGames.UltimateTicTacToe.Juinen
 				{
 					continue;
 				}
+				
 
 				if (Finals1.Any(mask => (mask & board) == mask))
 				{
@@ -111,6 +111,7 @@ namespace AIGames.UltimateTicTacToe.Juinen
 						var shft = move << 1;
 						if ((board & (3 << shft)) == 0)
 						{
+							MoveCount[board]++;
 							MovesO[board, move] = board | (1 << shft);
 							MovesX[board, move] = board | (2 << shft);
 						}
