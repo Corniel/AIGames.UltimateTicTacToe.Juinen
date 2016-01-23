@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="Communication\ConsolePlatformTester.cs" />
     <Compile Include="Communication\FieldTest.cs" />
+    <Compile Include="Communication\InstructionTest.cs" />
+    <Compile Include="Communication\MacroFieldTest.cs" />
     <Compile Include="Deployoment\Deployer.cs" />
     <Compile Include="Deployoment\DeployerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,16 +69,7 @@
     <EmbeddedResource Include="Communication\input.simple.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Communication\input.0004.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Book\db.dat" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Communication\input.0024.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Communication\input.0034.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mocking\" />

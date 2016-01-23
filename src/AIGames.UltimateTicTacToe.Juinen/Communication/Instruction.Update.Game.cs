@@ -8,6 +8,7 @@
 			{
 				case "round": return RoundInstruction.Parse(splitted);
 				case "field": return FieldInstruction.Parse(splitted);
+				case "macroboard": return MacroBoardInstruction.Parse(splitted);
 			}
 			return null;
 		}

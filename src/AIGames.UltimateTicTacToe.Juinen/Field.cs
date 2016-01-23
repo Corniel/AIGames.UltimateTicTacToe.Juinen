@@ -21,7 +21,7 @@ namespace AIGames.UltimateTicTacToe.Juinen
 		public static Field Parse(String str)
 		{
 			var board = new int[Size, Size];
-			int ix = 1;
+			int ix = 0;
 			var chars = str.ToCharArray();
 			for (int y = 0; y < Size; y++)
 			{

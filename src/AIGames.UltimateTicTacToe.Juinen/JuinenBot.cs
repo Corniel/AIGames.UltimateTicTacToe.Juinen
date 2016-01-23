@@ -5,19 +5,21 @@ namespace AIGames.UltimateTicTacToe.Juinen
 {
 	public class JuinenBot : IBot
 	{
+		PlayerName MyPlayerName = PlayerName.None;
+
 		void IBot.ApplySettings(Settings settings)
 		{
-			throw new NotImplementedException();
+			MyPlayerName = settings.YourBot;
 		}
 
 		void IBot.Update(GameState state)
 		{
-			throw new NotImplementedException();
+			//TODO
 		}
 
 		BotResponse IBot.GetResponse(TimeSpan time)
 		{
-			throw new NotImplementedException();
+			return new BotResponse();
 		}
 	}
 }

@@ -3,17 +3,17 @@ using System.Diagnostics;
 
 namespace AIGames.UltimateTicTacToe.Juinen.Communication
 {
-	public struct FieldInstruction : IInstruction
+	public struct MacroBoardInstruction : IInstruction
 	{
-		public FieldInstruction(String field) 
+		public MacroBoardInstruction(String field) 
 		{
 			str = field;
-			m_Field = Field.Parse(field); 
+			m_Field = MacroField.Parse(field); 
 		}
 
-		public Field Field { get { return m_Field; } }
+		public MacroField Field { get { return m_Field; } }
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Field m_Field;
+		private readonly MacroField m_Field;
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly String str;
@@ -25,7 +25,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 
 		internal static IInstruction Parse(string[] splited)
 		{
-			return new FieldInstruction(splited[3]);
+			return new MacroBoardInstruction(splited[3]);
 		}
 	}
 }
