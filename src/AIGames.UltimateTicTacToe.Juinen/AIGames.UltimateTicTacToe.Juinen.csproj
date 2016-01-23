@@ -56,6 +56,9 @@
     <Compile Include="Communication\Settings.cs" />
     <Compile Include="DecisionMaking\MoveGenerator.cs" />
     <Compile Include="DecisionMaking\Node.cs" />
+    <Compile Include="DecisionMaking\ONode.cs" />
+    <Compile Include="DecisionMaking\Scores.cs" />
+    <Compile Include="DecisionMaking\XNode.cs" />
     <Compile Include="Evaluation\Evaluator.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="JuinenBot.cs" />

@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 
 namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 {
-	public class Node
+	public abstract class Node 
 	{
-		public ushort[] Board { get; set; }
+		internal static readonly MoveGenerator Generator = new MoveGenerator();
 
-		public List<Node> Children { get; set; }
+		protected Node(int[] macro, int depth, int score)
+		{
+			Macro = macro;
+			Depth = depth;
+			Score = score;
+		}
+		public int[] Macro { get; private set; }
+		public int Depth { get; private set; }
 
-		public int Score { get; private set; }
+		public int Score { get; protected set; }
+
+		public int Active { get; protected set; }
+
+		public abstract int Apply(int depth, Node parent, int alpha, int beta);
 	}
 }
