@@ -10,11 +10,11 @@ namespace AIGames.UltimateTicTacToe.Juinen.UnitTests.Deployoment
 		[Test]
 		public void Deploy_Bot_CompileAndZip()
 		{
-			var collectDir = new DirectoryInfo(@"C:\AIGames.UltimateTicTacToe.Juinen\src\AIGames.UltimateTicTacToe.Juinen");
+			var collectDir = new DirectoryInfo(@"C:\Code\AIGames.UltimateTicTacToe.Juinen\src\AIGames.UltimateTicTacToe.Juinen");
 			var full = collectDir.FullName;
-			var version = typeof(JuinenBot).Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
+			var version = typeof(TheDaltonsBot).Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
 			var nr = int.Parse(version.Split('.')[0]);
-			Deployer.Run(collectDir, "Juinen", nr.ToString("0000"), false);
+			Deployer.Run(collectDir, "TheDaltons", nr.ToString("0000"), false);
 		}
 	}
 }

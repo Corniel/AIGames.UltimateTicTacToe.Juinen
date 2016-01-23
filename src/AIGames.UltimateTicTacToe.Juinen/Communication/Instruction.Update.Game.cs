@@ -2,13 +2,12 @@
 {
 	public static class UpdateGameInstruction
 	{
-		internal static IInstruction Parse(string[] splitted)
+		internal static IInstruction Parse(string[] splited)
 		{
-			switch (splitted[2])
+			switch (splited[2])
 			{
-				case "round": return RoundInstruction.Parse(splitted);
-				case "field": return FieldInstruction.Parse(splitted);
-				case "macroboard": return MacroBoardInstruction.Parse(splitted);
+				case "round": return RoundInstruction.Parse(splited);
+				case "field": return FieldInstruction.Parse(splited);
 			}
 			return null;
 		}

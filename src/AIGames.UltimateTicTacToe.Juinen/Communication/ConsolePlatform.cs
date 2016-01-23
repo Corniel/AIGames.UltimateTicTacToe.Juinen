@@ -73,7 +73,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 					}
 					catch (Exception x)
 					{
-						Writer.WriteLine(new MoveInstruction(4, 4));
+						Writer.WriteLine(new MoveInstruction(4));
 						Logger.WriteLine(x);
 					}
 				}

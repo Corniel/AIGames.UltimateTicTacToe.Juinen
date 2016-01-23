@@ -16,10 +16,10 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 			return String.Format("action move {0:0}", Time.TotalMilliseconds);
 		}
 
-		internal static IInstruction Parse(string[] splitted)
+		internal static IInstruction Parse(string[] splited)
 		{
 			int ms;
-			if (splitted[1] == "move" && splitted.Length == 3 && Int32.TryParse(splitted[2], out ms))
+			if (splited[1] == "move" && splited.Length == 3 && Int32.TryParse(splited[2], out ms))
 			{
 				return new RequestMoveInstruction(TimeSpan.FromMilliseconds(ms));
 			}

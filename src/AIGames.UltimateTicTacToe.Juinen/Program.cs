@@ -8,7 +8,7 @@ namespace AIGames.UltimateTicTacToe.Juinen
 		[ExcludeFromCodeCoverage]
 		public static void Main(string[] args)
 		{
-			Communication.ConsolePlatform.Run(new Juinen.JuinenBot());
+			Communication.ConsolePlatform.Run(new TheDaltonsBot());
 		}
 	}
 }

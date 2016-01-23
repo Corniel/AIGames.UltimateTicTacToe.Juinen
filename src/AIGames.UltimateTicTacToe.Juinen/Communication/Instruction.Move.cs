@@ -4,15 +4,14 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 {
 	public class MoveInstruction : IInstruction
 	{
-		public MoveInstruction(int x, int y)
+		public MoveInstruction(byte colomn)
 		{
-			X = x;
-			Y = y;
+			// The internal representation is mirrored to the of the challenge.
+			Column = (byte)(6 - colomn);
 		}
 
-		public readonly int X;
-		public readonly int Y;
+		private readonly Byte Column;
 
-		public override string ToString() { return string.Format("place_move {0} {1}", X, Y); }
+		public override string ToString() { return string.Format("place_disc {0}", Column); }
 	}
 }
