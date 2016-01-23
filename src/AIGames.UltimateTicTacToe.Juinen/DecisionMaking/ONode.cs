@@ -8,6 +8,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 		public ONode(int[] meta, int depth, int value) 
 			: base(meta, depth, value) { }
 
+		public override Node Best { get { return Children[0]; } }
 		public List<XNode> Children { get; set; }
 		public int Count {get { return Children.Count; }}
 

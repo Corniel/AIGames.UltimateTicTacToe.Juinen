@@ -13,7 +13,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 		public Node Root { get; set; }
 
 
-		public byte GetMove(int[] meta, bool oToMove, TimeSpan duration)
+		public int[] GetMove(int[] meta, bool oToMove, TimeSpan duration)
 		{
 			Watch.Restart();
 
@@ -26,7 +26,18 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 			{
 				Root.Apply(depth, Root, Scores.InitialAlpha, Scores.InitialBeta, duration);
 			}
-			return 0;
+
+			var tiny = 0;
+			var move = Root.Best.Meta[MetaBoard.LastMove];
+			for (var i = 0; i < 9; i++)
+			{
+				if (Root.Meta[i] != Root.Best.Meta[i])
+				{
+					tiny = i;
+					break;
+				}
+			}
+			return new int[] { tiny, move};
 		}
 	}
 }

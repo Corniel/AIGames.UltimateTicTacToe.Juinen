@@ -18,6 +18,9 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 			Depth = depth;
 			Score = score;
 		}
+
+		public abstract Node Best { get; }
+
 		public int[] Meta { get; private set; }
 		public int Depth { get; private set; }
 		public int Score { get; protected set; }
