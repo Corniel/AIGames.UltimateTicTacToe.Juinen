@@ -15,6 +15,22 @@ namespace AIGames.UltimateTicTacToe.Juinen
 			this.Board = board;
 		}
 
+		/// <summary>
+		/// Returns a copy of the MacroField
+		/// </summary>
+		public MacroField Copy()
+		{
+			var board = new int[Size, Size];
+			for (int x = 0; x < Size; x++)
+			{
+				for (int y = 0; y < Size; y++)
+				{
+					board[x, y] = this.Board[x, y];
+				}
+			}
+			return new MacroField(board);
+		}
+
 		public static MacroField Parse(String str)
 		{
 			var board = new int[Size, Size];
@@ -38,5 +54,6 @@ namespace AIGames.UltimateTicTacToe.Juinen
 			}
 			return new MacroField(board);
 		}
+
 	}
 }

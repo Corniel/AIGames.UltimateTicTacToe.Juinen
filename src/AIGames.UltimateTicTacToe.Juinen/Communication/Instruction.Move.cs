@@ -4,10 +4,10 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 {
 	public class MoveInstruction : IInstruction
 	{
-		public MoveInstruction(int index)
+		public MoveInstruction(int x, int y)
 		{
-			X = index % 9;
-			Y = index / 9;
+			X = x;
+			Y = y;
 		}
 
 		private readonly int X;

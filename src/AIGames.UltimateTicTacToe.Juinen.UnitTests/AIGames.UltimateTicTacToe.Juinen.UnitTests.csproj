@@ -50,6 +50,7 @@
     <Compile Include="Communication\MacroFieldTest.cs" />
     <Compile Include="Deployoment\Deployer.cs" />
     <Compile Include="Deployoment\DeployerTest.cs" />
+    <Compile Include="Evaluation\EvaluatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TinyBoardTest.cs" />
   </ItemGroup>

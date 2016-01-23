@@ -18,6 +18,22 @@ namespace AIGames.UltimateTicTacToe.Juinen
 			this.Board = board;
 		}
 
+		/// <summary>
+		/// Returns a copy of the Field
+		/// </summary>
+		public Field Copy()
+		{
+			var board = new int[Size, Size];
+			for (int x = 0; x < Size; x++)
+			{
+				for (int y = 0; y < Size; y++)
+				{
+					board[x, y] = this.Board[x, y];
+				}
+			}
+			return new Field(board);
+		}
+
 		public static Field Parse(String str)
 		{
 			var board = new int[Size, Size];

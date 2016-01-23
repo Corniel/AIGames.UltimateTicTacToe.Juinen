@@ -11,7 +11,85 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 		public Field Field { get; set; }
 		public MacroField MacroBoard { get; set; }
 
+		/// <summary>
+		/// Returns a copy of the gamestate
+		/// </summary>
+		public GameState Copy()
+		{
+			return new GameState()
+			{
+				Field = this.Field.Copy(),
+				MacroBoard = this.MacroBoard.Copy(),
+				Round = this.Round,
+			};
+		}
 
+		public GameState CopyAndPlay(int x, int y, PlayerName player)
+		{
+			var newState = this.Copy();
+			newState.Field.Board[x, y] = (int)player;
+			return newState;
+		}
+
+		public int[][] Boards
+		{
+			get
+			{
+				var result = new int[10][];
+				for (int tinyX = 0; tinyX < 3; tinyX++)
+				{
+					for (int tinyY = 0; tinyY < 3; tinyY++)
+					{
+						var tinyBoard = new int[9];
+						for (int x = 0; x < 3; x++)
+						{
+							for(int y = 0; y < 3; y++)
+							{
+								tinyBoard[x + 3 * y] = Field.Board[3 * tinyX + x, 3 * tinyY + y];
+							}
+						}
+						result[tinyX + 3 * tinyY] = tinyBoard;
+					}
+				}
+
+				//TODO: how to fill macroboard
+				result[9] = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+				return result;
+			}
+		}
+		/// <summary>
+		/// Returns an array of 9 elements, indicating for each tinyboard, whether it is playable
+		/// </summary>
+		public bool[] PlayableBoards
+		{
+			get
+			{
+				var result = new bool[9];
+				for (int y = 0; y < 3; y++)
+				{
+					for (int x = 0; x < 3; x++)
+					{
+						result[x + 3 * y] = MacroBoard.Board[x, y] == -1;
+					}
+				}
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Returns the first playable board
+		/// </summary>
+		public int PlayableBoard
+		{
+			get
+			{
+				var board = PlayableBoards;
+				for (int ix = 0; ix < 9; ix++)
+					if (board[ix]) return ix;
+				return 4;	//TODO: all tinyboards are playable
+			}
+		}
 		public bool Apply(IInstruction instruction)
 		{
 			if (Mapping.ContainsKey(instruction.GetType()))
