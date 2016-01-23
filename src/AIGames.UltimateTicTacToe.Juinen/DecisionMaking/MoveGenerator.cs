@@ -5,13 +5,14 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 {
 	public class MoveGenerator
 	{
-		public IEnumerable<int[]> GetMoves(int[] macro, bool oToMove, int active)
+		public IEnumerable<int[]> GetMoves(int[] meta, bool oToMove)
 		{
+			var active = meta[MetaBoard.LastMove];
 			var options = oToMove ? TinyBoard.MovesO : TinyBoard.MovesX;
 
 			if (active != 9)
 			{
-				var tiny = macro[active];
+				var tiny = meta[active];
 				var moveCount = TinyBoard.MoveCount[tiny];
 				if (moveCount != 0)
 				{
@@ -23,9 +24,9 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 						{
 							continue;
 						}
-						var copy = new int[10];
-						Array.Copy(macro, copy, 10);
+						var copy = MetaBoard.Copy(meta);
 						copy[active] = response;
+						copy[MetaBoard.LastMove] = move;
 						yield return copy;
 					}
 					yield break;
@@ -33,9 +34,10 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 			}
 			for (var a = 0; a < 9; a++)
 			{
-				if (TinyBoard.MoveCount[macro[a]] != 0)
+				meta[MetaBoard.LastMove] = a;
+				if (TinyBoard.MoveCount[meta[a]] != 0)
 				{
-					foreach (var response in GetMoves(macro, oToMove, a))
+					foreach (var response in GetMoves(meta, oToMove))
 					{
 						yield return response;
 					}

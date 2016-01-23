@@ -12,17 +12,14 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 		internal static readonly MoveGenerator Generator = new MoveGenerator();
 		internal static readonly Evaluator Evaluator = new Evaluator();
 
-		protected Node(int[] meta, int depth, int active, int score)
+		protected Node(int[] meta, int depth, int score)
 		{
 			Meta = meta;
 			Depth = depth;
-			Active = active;
 			Score = score;
 		}
 		public int[] Meta { get; private set; }
 		public int Depth { get; private set; }
-		public int Active { get; protected set; }
-
 		public int Score { get; protected set; }
 
 

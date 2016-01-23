@@ -7,8 +7,8 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 	[DebuggerDisplay("{DebuggerDisplay}")]
 	public class XNode : Node, IComparable, IComparable<XNode>
 	{
-		public XNode(int[] meta, int depth, int active, int value)
-			: base(meta, depth,active, value)
+		public XNode(int[] meta, int depth, int value)
+			: base(meta, depth, value)
 		{ }
 
 		public List<ONode> Children { get; set; }
@@ -24,11 +24,11 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 			if (Children == null)
 			{
 				Children = new List<ONode>(8);
-				foreach (var response in Node.Generator.GetMoves(parent.Meta, true, Active))
+				foreach (var response in Node.Generator.GetMoves(parent.Meta, true))
 				{
 					var active = 9;
-					var score = Node.Evaluator.Evaluate(response, true, active);
-					var child = new ONode(response, Depth + 1, active, score);
+					var score = Node.Evaluator.Evaluate(response, true);
+					var child = new ONode(response, Depth + 1, score);
 					Children.Add(child);
 				}
 			}

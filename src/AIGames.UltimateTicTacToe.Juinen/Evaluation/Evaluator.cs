@@ -6,7 +6,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Evaluation
 {
 	public class Evaluator
 	{
-		public int Evaluate(int[] meta, bool oToMove, int active)
+		public int Evaluate(int[] meta, bool oToMove)
 		{
 			return 0;
 		}

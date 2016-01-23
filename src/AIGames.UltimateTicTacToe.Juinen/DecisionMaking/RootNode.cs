@@ -13,14 +13,14 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 		public Node Root { get; set; }
 
 
-		public byte GetMove(int[] meta, bool oToMove, int active, TimeSpan duration)
+		public byte GetMove(int[] meta, bool oToMove, TimeSpan duration)
 		{
 			Watch.Restart();
 
-			var score = Node.Evaluator.Evaluate(meta, oToMove, active);
+			var score = Node.Evaluator.Evaluate(meta, oToMove);
 			Root = oToMove ?
-				(Node)new ONode(meta, 0, active, score) :
-				(Node)new XNode(meta, 0, active, score);
+				(Node)new ONode(meta, 0, score) :
+				(Node)new XNode(meta, 0, score);
 
 			for(var depth = 1; depth < 81; depth++)
 			{
