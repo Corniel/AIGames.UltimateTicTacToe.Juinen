@@ -8,13 +8,6 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 	{
 		public int Round { get; set; }
 		
-		/// <summary>Get the ply count.</summary>
-		/// <remarks>
-		/// 1 for Round, player 1 et cetera.
-		/// 
-		/// Maximum for this game is 42 as there are 42 fields.
-		/// </remarks>
-		public int Ply { get { return Field.Count + 1; } }
 		public Field Field { get; set; }
 	
 
