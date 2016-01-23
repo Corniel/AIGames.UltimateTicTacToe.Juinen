@@ -57,6 +57,7 @@
     <Compile Include="DecisionMaking\MoveGenerator.cs" />
     <Compile Include="DecisionMaking\Node.cs" />
     <Compile Include="DecisionMaking\ONode.cs" />
+    <Compile Include="DecisionMaking\RootNode.cs" />
     <Compile Include="DecisionMaking\Scores.cs" />
     <Compile Include="DecisionMaking\XNode.cs" />
     <Compile Include="Evaluation\Evaluator.cs" />

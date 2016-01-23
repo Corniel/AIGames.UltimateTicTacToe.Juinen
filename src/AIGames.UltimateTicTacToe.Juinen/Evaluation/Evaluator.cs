@@ -6,6 +6,10 @@ namespace AIGames.UltimateTicTacToe.Juinen.Evaluation
 {
 	public class Evaluator
 	{
+		public int Evaluate(int[] meta, bool oToMove, int active)
+		{
+			return 0;
+		}
 		/// <summary>
 		/// Calculates the score for the current boards
 		/// </summary>

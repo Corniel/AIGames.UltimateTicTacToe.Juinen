@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIGames.UltimateTicTacToe.Juinen.Evaluation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,22 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 	public abstract class Node 
 	{
 		internal static readonly MoveGenerator Generator = new MoveGenerator();
+		internal static readonly Evaluator Evaluator = new Evaluator();
 
-		protected Node(int[] macro, int depth, int score)
+		protected Node(int[] meta, int depth, int active, int score)
 		{
-			Macro = macro;
+			Meta = meta;
 			Depth = depth;
+			Active = active;
 			Score = score;
 		}
-		public int[] Macro { get; private set; }
+		public int[] Meta { get; private set; }
 		public int Depth { get; private set; }
+		public int Active { get; protected set; }
 
 		public int Score { get; protected set; }
 
-		public int Active { get; protected set; }
 
-		public abstract int Apply(int depth, Node parent, int alpha, int beta);
+		public abstract int Apply(int depth, Node parent, int alpha, int beta, TimeSpan duration);
 	}
 }

@@ -8,10 +8,10 @@ namespace AIGames.UltimateTicTacToe.Juinen
 {
 	public static class MacroBoard
 	{
-		public static ushort[] Create(MacroField field)
+		public static int[] Create(MacroField field)
 		{
-			var ushorts = new ushort[10];
-			return ushorts;
+			var tinies = new int[10];
+			return tinies;
 		}
 	}
 }

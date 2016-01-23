@@ -5,22 +5,27 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 {
 	public class ONode : Node, IComparable, IComparable<ONode>
 	{
-		public ONode(int[] macro, int depth, int value) 
-			: base(macro, depth, value) { }
+		public ONode(int[] meta, int depth, int active, int value) 
+			: base(meta, depth, active, value) { }
 
 		public List<XNode> Children { get; set; }
 		public int Count {get { return Children.Count; }}
 
-		public override int Apply(int depth, Node parent, int alpha, int beta)
+		public override int Apply(int depth, Node parent, int alpha, int beta, TimeSpan duration)
 		{
-			if (depth < Depth) { return Score; }
+			if (depth < Depth || Depth == 81 || duration > RootNode.Watch.Elapsed)
+			{
+				return Score;
+			}
 
 			if (Children == null)
 			{
 				Children = new List<XNode>(8);
-				foreach (var response in Node.Generator.GetMoves(parent.Macro, true, Active))
+				foreach (var response in Node.Generator.GetMoves(parent.Meta, true, Active))
 				{
-					var child = new XNode(response, Depth + 1, 0);
+					var active = 9;
+					var score = Node.Evaluator.Evaluate(response, false, active);
+					var child = new XNode(response, Depth + 1, active, score);
 					Children.Add(child);
 				}
 			}
@@ -31,7 +36,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 			for (/**/; i <= count; i++)
 			{
 				var child = Children[i];
-				var test = child.Apply(depth, this, alpha, beta);
+				var test = child.Apply(depth, this, alpha, beta, duration);
 				if (test > Score)
 				{
 					Score = test;

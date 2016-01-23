@@ -5,6 +5,9 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 {
 	public static class Scores
 	{
+		public const int InitialAlpha = int.MinValue;
+		public const int InitialBeta = int.MaxValue;
+
 		public const int MaximumDepth = 82;
 
 		public const int Draw = 0;
