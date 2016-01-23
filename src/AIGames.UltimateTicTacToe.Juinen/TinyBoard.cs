@@ -32,19 +32,20 @@ namespace AIGames.UltimateTicTacToe.Juinen
 		};
 
 		public const int PossiblePositions = 18754;
+		public const int PossibleInts = 1 << 18;
 
 		/// <summary>Gets the moves for a tiny board.</summary>
 		/// <remarks>
 		/// var response = Moves[currentboard, move];
 		/// </remarks>
-		public static readonly int[,] MovesO = new int[1 << 18, 9];
-		public static readonly int[,] MovesX = new int[1 << 18, 9];
-		public static readonly int[] MoveCount = new int[1 << 18];
+		public static readonly int[,] MovesO = new int[PossibleInts, 9];
+		public static readonly int[,] MovesX = new int[PossibleInts, 9];
+		public static readonly int[] MoveCount = new int[PossibleInts];
 		/// <summary>Gets the outcome of a tiny board.</summary>
 		/// <remarks>
 		/// var outcome = Moves[currentboard]; // 0, no outcome yet, 1 or 2.
 		/// </remarks>
-		public static readonly byte[] Outcomes = new byte[1 << 18];
+		public static readonly byte[] Outcomes = new byte[PossibleInts];
 
 		public static int ToTiny(byte[] board)
 		{
@@ -99,14 +100,12 @@ namespace AIGames.UltimateTicTacToe.Juinen
 		}
 		static TinyBoard()
 		{
-			for (var board = 0; board < (1 << 18); board++)
+			for (var board = 0; board < PossibleInts; board++)
 			{
 				if(!IsValid(board))
 				{
 					continue;
 				}
-				
-
 				if (Finals1.Any(mask => (mask & board) == mask))
 				{
 					Outcomes[board] = 1;

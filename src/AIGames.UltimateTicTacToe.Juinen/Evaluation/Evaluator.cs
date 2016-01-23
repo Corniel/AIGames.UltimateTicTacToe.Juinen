@@ -6,9 +6,62 @@ namespace AIGames.UltimateTicTacToe.Juinen.Evaluation
 {
 	public class Evaluator
 	{
+		public static int[] TinyScoresO = new int[TinyBoard.PossibleInts];
+		//public static int[] TinyScoresX = new int[TinyBoard.PossibleInts];
+
+		public static int[] Weights = new int[] {3 ,2, 3, 2, 4, 2, 3, 2, 3 };
+
+		static Evaluator()
+		{
+			for (var board = 0; board < TinyBoard.PossibleInts; board++)
+			{
+				if (!TinyBoard.IsValid(board))
+				{
+					continue;
+				}
+				if (TinyBoard.Outcomes[board] == 0)
+				{
+					var bytes = new int[9];
+					var mask = board;
+
+					for (var i = 0; i < 9; i++)
+					{
+						bytes[i] = mask & 3;
+						mask >>= 2;
+					}
+					TinyScoresO[board] = EvaluateBoard(bytes, PlayerName.Player1);
+					//TinyScoresX[board] = EvaluateBoard(bytes, PlayerName.Player2);
+				}
+			}
+		}
+
 		public int Evaluate(int[] meta, bool oToMove)
 		{
-			return 0;
+			var lookup = TinyScoresO; //: TinyScoresX;
+
+			var score = 0;
+
+			for (var i = 0; i < 9; i++)
+			{
+				var tiny = meta[i];
+				var outcome = TinyBoard.Outcomes[meta[i]];
+				if (outcome == 0)
+				{
+					score += Weights[i] * lookup[tiny];
+				}
+				else if (outcome == 1)
+				{
+					score += Weights[i] * 1000;
+				}
+				else if (outcome == 2)
+				{
+					score -= Weights[i] * 1000;
+				}
+			}
+			var macro = meta[MetaBoard.MacroIndex];
+			score += 10 * lookup[macro];
+
+			return score;
 		}
 		/// <summary>
 		/// Calculates the score for the current boards
@@ -41,7 +94,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Evaluation
 			new int[] { 2, 4, 6 },
 		};
 
-		public int EvaluateBoard(int[] board, PlayerName player)
+		public static int EvaluateBoard(int[] board, PlayerName player)
 		{
 			if (board.Length != 9) throw new Exception("board must have 9 elements");
 			int score = 0;

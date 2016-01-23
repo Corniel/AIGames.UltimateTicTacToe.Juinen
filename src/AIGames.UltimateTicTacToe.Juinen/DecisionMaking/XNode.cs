@@ -17,7 +17,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 
 		public override int Apply(int depth, Node parent, int alpha, int beta, TimeSpan duration)
 		{
-			if (depth < Depth || Depth == 81 || duration > RootNode.Watch.Elapsed)
+			if (depth < Depth || Depth == 81 || duration < RootNode.Watch.Elapsed)
 			{
 				return Score;
 			}
@@ -33,7 +33,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 					Children.Add(child);
 				}
 			}
-			Score = Scores.XWins[Depth];
+			Score = Scores.OWins[Depth];
 			var i = 0;
 			var count = Count - 1;
 			for (/**/; i <= count; i++)
@@ -66,5 +66,11 @@ namespace AIGames.UltimateTicTacToe.Juinen.DecisionMaking
 		{
 			return -Score.CompareTo(other.Score);
 		}
+
+		private string DebuggerDisplay
+		{
+			get { return String.Format("XNode: {0}", Scores.GetFormatted(Score)); }
+		}
+	
 	}
 }

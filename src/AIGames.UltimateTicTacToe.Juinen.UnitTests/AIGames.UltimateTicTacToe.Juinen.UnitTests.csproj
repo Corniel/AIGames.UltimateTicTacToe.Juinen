@@ -48,6 +48,7 @@
     <Compile Include="Communication\FieldTest.cs" />
     <Compile Include="Communication\InstructionTest.cs" />
     <Compile Include="Communication\MacroFieldTest.cs" />
+    <Compile Include="DecisionMaking\RootNodeTest.cs" />
     <Compile Include="Deployoment\Deployer.cs" />
     <Compile Include="Deployoment\DeployerTest.cs" />
     <Compile Include="Evaluation\EvaluatorTest.cs" />
