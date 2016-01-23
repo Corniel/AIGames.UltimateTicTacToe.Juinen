@@ -7,9 +7,10 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 	public class GameState
 	{
 		public int Round { get; set; }
-		
+
 		public Field Field { get; set; }
-	
+		public MacroField MacroBoard { get; set; }
+
 
 		public bool Apply(IInstruction instruction)
 		{
@@ -25,7 +26,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 		{
 			var state = new GameState();
 
-			foreach(var instruction in instructions.Where(i => Mapping.ContainsKey(i.GetType())))
+			foreach (var instruction in instructions.Where(i => Mapping.ContainsKey(i.GetType())))
 			{
 				Mapping[instruction.GetType()].Invoke(instruction, state);
 			}
@@ -41,8 +42,18 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 					state.Field = inst.Field;
 				}
 			},
+			{
+				typeof(MacroBoardInstruction), (instruction, state) =>
+				{
+					var inst = (MacroBoardInstruction)instruction;
+					state.MacroBoard = inst.MacroBoard;
+				}
+			},
 			{ 
-				typeof(RoundInstruction), (instruction, state) => { state.Round = ((RoundInstruction)instruction).Value; }
+				typeof(RoundInstruction), (instruction, state) => 
+				{ 
+					state.Round = ((RoundInstruction)instruction).Value; 
+				}
 			},
 		};
 	}

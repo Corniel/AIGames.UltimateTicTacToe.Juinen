@@ -5,21 +5,30 @@ namespace AIGames.UltimateTicTacToe.Juinen
 {
 	public class JuinenBot : IBot
 	{
-		PlayerName MyPlayerName = PlayerName.None;
+		public Settings Settings { get; set; }
+		public GameState State { get; set; }
 
 		void IBot.ApplySettings(Settings settings)
 		{
-			MyPlayerName = settings.YourBot;
+			Settings = settings;
 		}
 
 		void IBot.Update(GameState state)
 		{
-			//TODO
+			State = state;
 		}
 
 		BotResponse IBot.GetResponse(TimeSpan time)
 		{
-			return new BotResponse();
+
+			var response = new BotResponse()
+			{
+				//Move = move,
+				//Log = move.ToString(),
+			};
+			return response;
 		}
+
+
 	}
 }

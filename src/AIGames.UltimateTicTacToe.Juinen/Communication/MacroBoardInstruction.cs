@@ -11,7 +11,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 			m_Field = MacroField.Parse(field); 
 		}
 
-		public MacroField Field { get { return m_Field; } }
+		public MacroField MacroBoard { get { return m_Field; } }
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly MacroField m_Field;
 
@@ -20,7 +20,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 
 		public override string ToString() 
 		{
-			return String.Format("update game field", str);
+			return String.Format("update macroboard field", str);
 		}
 
 		internal static IInstruction Parse(string[] splited)
