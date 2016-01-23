@@ -25,11 +25,32 @@ namespace AIGames.UltimateTicTacToe.Juinen.UnitTests.Regression
 			AssertMove(3, 4, response);
 		}
 
+		/// <summary>
+		/// Test game V1: invalid move in round 28, move 55
+		/// </summary>
+		[Test]
+		public void Regression_56a3985cc1d43a4ae815616b_Round28_Move55()
+		{
+			var state = CreateGameState("2,2,0,0,0,1,1,1,2,0,2,1,2,1,0,2,1,0,2,2,0,2,2,2,0,2,0,1,2,1,1,2,2,1,1,0,1,1,2,2,1,2,2,1,2,2,0,0,0,2,2,1,0,0,1,1,2,1,0,1,1,0,0,1,1,0,1,1,0,0,1,2,2,0,2,0,0,0,1,0,0",
+				"2,2,0,0,2,0,0,0,0");
+			var bot = CreateBot();
+			bot.Update(state);
+			var response = bot.GetResponse(TheTimespan);
+			AssertMoveNot(3, 5, response);
+		}
+
 		private void AssertMove(int x, int y, BotResponse response)
 		{
 			string expected = string.Format("({0},{1})", x, y);
 			string actual = string.Format("({0},{1})", response.Move.X, response.Move.Y);
 			Assert.AreEqual(expected, actual);
+		}
+
+		private void AssertMoveNot(int x, int y, BotResponse response)
+		{
+			string expected = string.Format("({0},{1})", x, y);
+			string actual = string.Format("({0},{1})", response.Move.X, response.Move.Y);
+			Assert.AreNotEqual(expected, actual);
 		}
 
 		private static TimeSpan TheTimespan = TimeSpan.FromSeconds(10);

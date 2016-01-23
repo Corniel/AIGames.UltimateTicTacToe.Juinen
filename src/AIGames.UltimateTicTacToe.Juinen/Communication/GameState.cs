@@ -66,14 +66,34 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 		{
 			get
 			{
+				bool allPlayable = true;
+
+				//If not all playable, then select the one and only with value == -1
 				var result = new bool[9];
 				for (int y = 0; y < 3; y++)
 				{
 					for (int x = 0; x < 3; x++)
 					{
-						result[x + 3 * y] = MacroBoard.Board[x, y] == -1;
+						if (MacroBoard.Board[x, y] == -1)
+						{
+							result[x + 3 * y] = true;
+							allPlayable = false;
+						}
 					}
 				}
+
+				//If all playable, then select all with value == 0
+				if (allPlayable)
+				{
+					for (int y = 0; y < 3; y++)
+					{
+						for (int x = 0; x < 3; x++)
+						{
+							result[x + 3 * y] = MacroBoard.Board[x, y] == 0;
+						}
+					}
+				}
+
 				return result;
 			}
 		}
@@ -88,7 +108,9 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 				var board = PlayableBoards;
 				for (int ix = 0; ix < 9; ix++)
 					if (board[ix]) return ix;
-				return 4;	//TODO: all tinyboards are playable
+
+				//Should never occur
+				return 4;
 			}
 		}
 		public bool Apply(IInstruction instruction)
