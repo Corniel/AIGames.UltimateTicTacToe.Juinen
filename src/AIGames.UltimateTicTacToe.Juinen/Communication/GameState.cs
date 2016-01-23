@@ -27,6 +27,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 		public GameState CopyAndPlay(int x, int y, PlayerName player)
 		{
 			var newState = this.Copy();
+			if (newState.Field.Board[x, y] != 0) throw new Exception(string.Format("Can't play ({0},{1}) because it was already played", x, y));
 			newState.Field.Board[x, y] = (int)player;
 			return newState;
 		}

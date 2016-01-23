@@ -34,13 +34,16 @@ namespace AIGames.UltimateTicTacToe.Juinen
 			{
 				for (int x = 0; x < 3; x++)
 				{
-					var newState = State.CopyAndPlay(x0 + x, y0 + y, Settings.YourBot);
-					int score = evaluator.Evaluate(newState.Boards, newState.PlayableBoards, Settings.YourBot);
-					if (score > bestScore)
+					if (State.Field.Board[x0 + x, y0 + y] == 0)
 					{
-						bestScore = score;
-						bestX = x0 + x;
-						bestY = y0 + y;
+						var newState = State.CopyAndPlay(x0 + x, y0 + y, Settings.YourBot);
+						int score = evaluator.Evaluate(newState.Boards, newState.PlayableBoards, Settings.YourBot);
+						if (score > bestScore)
+						{
+							bestScore = score;
+							bestX = x0 + x;
+							bestY = y0 + y;
+						}
 					}
 				}
 			}

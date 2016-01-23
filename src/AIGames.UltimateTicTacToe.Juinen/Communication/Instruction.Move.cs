@@ -10,8 +10,8 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 			Y = y;
 		}
 
-		private readonly int X;
-		private readonly int Y;
+		public readonly int X;
+		public readonly int Y;
 
 		public override string ToString() { return string.Format("place_move {0} {1}", X, Y); }
 	}

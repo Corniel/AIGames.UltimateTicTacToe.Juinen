@@ -57,6 +57,17 @@ namespace AIGames.UltimateTicTacToe.Juinen
 			return tiny;
 		}
 
+		public static int ToTiny(int[] board)
+		{
+			var tiny = 0;
+			for (var index = 0; index < 9; index++)
+			{
+				var shft = index << 1;
+				tiny |= ((int)board[index]) << shft;
+			}
+			return tiny;
+		}
+
 		public static string ToString(byte[] board)
 		{
 			var sb = new StringBuilder();
