@@ -8,13 +8,13 @@ namespace AIGames.UltimateTicTacToe.Juinen.Communication
 	{
 		public static IInstruction Parse(string line)
 		{
-			var splited = line.Split(' ');
+			var splitted = line.Split(' ');
 
-			switch (splited[0])
+			switch (splitted[0])
 			{
-				case "action": return RequestMoveInstruction.Parse(splited);
-				case "settings": return SettingsInstruction.Parse(splited);
-				case "update": return UpdateInstruction.Parse(splited);
+				case "action": return RequestMoveInstruction.Parse(splitted);
+				case "settings": return SettingsInstruction.Parse(splitted);
+				case "update": return UpdateInstruction.Parse(splitted);
 			}
 			return null;
 		}

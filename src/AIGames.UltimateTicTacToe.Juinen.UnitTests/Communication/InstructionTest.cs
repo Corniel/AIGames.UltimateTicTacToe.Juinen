@@ -1,36 +1,44 @@
-﻿using AIGames.UltimateTicTacToe.Juinen.Communication;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 
 namespace AIGames.UltimateTicTacToe.Juinen.UnitTests.Communication
 {
-	[TestFixture]
-	public class InstructionTest
+	[TestFixture, Category(Category.IntegrationTest)]
+	public class ConsolePlatformTest
 	{
-		#region Action
-
 		[Test]
-		public void Parse_RequestMoveInstruction_12345ms()
+		public void DoRun_Simple_NoExceptions()
 		{
-			var act = Instruction.Parse("action move 12345");
-			var exp = new RequestMoveInstruction(TimeSpan.FromMilliseconds(12345));
-
-			Assert.AreEqual(exp, act);
+			using (var platform = new ConsolePlatformTester("input.simple.txt"))
+			{
+				platform.DoRun(new JuinenBot());
+			}
 		}
 
-		#endregion
-
-		#region Settings
-
 		[Test]
-		public void Parse_YourBotInstruction_Player2()
+		public void DoRun_0004_NoExceptions()
 		{
-			var act = Instruction.Parse("settings your_bot player2");
-			var exp = new YourBotInstruction(PlayerName.Player2);
-
-			Assert.AreEqual(exp, act);
+			using (var platform = new ConsolePlatformTester("input.0004.txt"))
+			{
+				platform.DoRun(new JuinenBot());
+			}
 		}
 
-		#endregion
+		[Test]
+		public void DoRun_0024_NoExceptions()
+		{
+			using (var platform = new ConsolePlatformTester("input.0024.txt"))
+			{
+				platform.DoRun(new JuinenBot());
+			}
+		}
+
+		[Test]
+		public void DoRun_0034_NoExceptions()
+		{
+			using (var platform = new ConsolePlatformTester("input.0034.txt"))
+			{
+				platform.DoRun(new JuinenBot());
+			}
+		}
 	}
 }

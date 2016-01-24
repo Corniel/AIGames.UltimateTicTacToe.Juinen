@@ -51,6 +51,7 @@
     <Compile Include="Communication\Instruction.Update.Game.cs" />
     <Compile Include="Communication\Instruction.Update.Game.Round.cs" />
     <Compile Include="Communication\Instruction.Update.Field.cs" />
+    <Compile Include="Communication\MacroBoardInstruction.cs" />
     <Compile Include="Communication\PlayerName.cs" />
     <Compile Include="Communication\Settings.cs" />
     <Compile Include="DecisionMaking\MoveGenerator.cs" />
@@ -59,26 +60,15 @@
     <Compile Include="DecisionMaking\RootNode.cs" />
     <Compile Include="DecisionMaking\Scores.cs" />
     <Compile Include="DecisionMaking\XNode.cs" />
-    <Compile Include="Evaluator.cs" />
+    <Compile Include="Evaluation\Evaluator.cs" />
     <Compile Include="Field.cs" />
-    <Compile Include="Field.Masks.cs" />
-    <Compile Include="ISearchTree.cs" />
-    <Compile Include="ISearchTreeNode.cs" />
-    <Compile Include="SearchTreeBookNode.cs" />
-    <Compile Include="MoveCandidate.cs" />
-    <Compile Include="MoveCandidates.cs" />
-    <Compile Include="MoveGenerator.cs" />
-    <Compile Include="PlyLog.cs" />
-    <Compile Include="Scores.cs" />
-    <Compile Include="SearchTree.cs" />
-    <Compile Include="SearchTreeEndNode.cs" />
-    <Compile Include="SearchTreeNode.cs" />
-    <Compile Include="SearchTreeYellowNode.cs" />
-    <Compile Include="SearchTreeRedNode.cs" />
-    <Compile Include="SearchTreeSubNode.cs" />
-    <Compile Include="TheDaltonsBot.cs" />
+    <Compile Include="JuinenBot.cs" />
+    <Compile Include="MacroBoard.cs" />
+    <Compile Include="MacroField.cs" />
+    <Compile Include="MetaBoard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinyBoard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.UnitTests.Communication
 	public class ConsolePlatformTester : ConsolePlatform
 	{
 		public ConsolePlatformTester(string path)
-			: base(LoadInput(path), Console.Out, new StringWriter()) {}
+			: base(LoadInput(path), Console.Out, new StringWriter()) { }
 
 		public override void DoRun(IBot bot)
 		{
@@ -21,7 +21,7 @@ namespace AIGames.UltimateTicTacToe.Juinen.UnitTests.Communication
 				Assert.Fail("The log output contains at least on exception.");
 			}
 		}
-		
+
 		private static TextReader LoadInput(string path)
 		{
 			return
